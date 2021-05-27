@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="/events.css"/>
+    <title>Add Events</title>
+</head>
+<body>
+    <nav class="navbar nav-tabs navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="/marketplace"><img class="mr-4" src="/logo-2.jpeg" width="70" height="70"/></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link font1 mr-4" href="#"> Forum</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link font1 mr-4" href="/marketplace">Market Place<span
+                                class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link font1 mr-4" href="/events">Events</a>
+                </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0 mr-2">
+    
+                <a href="/" class="btn btn-outline-danger my-2 my-sm-0" type="submit">Log out</a>
+            </form>
+        </div>
+    </nav>
+    <div class="row">
+        <div class="col-12 col-md-6 box-1">
+            <br>
+            <center>
+                <h3>Create Event</h3>
+            </center>
+            <br>
+            <div>
+                <form class="needs-validation" novalidate id="user-form" action="/addevents" method="POST">
+                    <div class="form-group row">
+                        <label for="eventname" class="col-md-4 col-form-label"
+                            ><b>Event Name: </b></label
+                        >
+                        <div class="col-md-6">
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="eventname"
+                                placeholder="Event Name"
+                                name="eventname"
+                                required
+                            />
+                            <div class="invalid-feedback">
+                                Please fill out this field.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="date" class="col-md-4 col-form-label"
+                            ><b>Event date: </b></label
+                        >
+                        <div class="col-md-6">
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="date"
+                                placeholder="DD-MM-YYYY"
+                                name="date"
+                                required
+                            />
+                            <div class="invalid-feedback">
+                                Please fill out this field.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="enddate" class="col-md-4 col-form-label"
+                            ><b>Registration end date: </b></label
+                        >
+                        <div class="col-md-6">
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="enddate"
+                                placeholder="DD-MM-YYYY"
+                                name="enddate"
+                                required
+                            />
+                            <div class="invalid-feedback">
+                                Please fill out this field.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="link" class="col-md-4 col-form-label"
+                            ><b>Registration link: </b></label
+                        >
+                        <div class="col-md-6">
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="link"
+                                placeholder="Link"
+                                name="link"
+                                required
+                            />
+                            <div class="invalid-feedback">
+                                Please fill out this field.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="status" class="col-md-4 col-form-label"
+                            ><b>Status: </b></label
+                        >
+                        <div class="col-md-6">
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="status"
+                                placeholder="1 for Past  2 for Present  3 for Upcoming"
+                                name="status"
+                                required
+                            />
+                            <div class="invalid-feedback">
+                                Please fill out this field.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="desc" class="col-md-4 col-form-label"
+                            ><b>Event Description: </b></label
+                        >
+                        <div class="col-md-6">
+                            <textarea
+                            class="form-control"
+                            id="desc"
+                            name="desc"
+                            rows="5"
+                            placeholder="Description"
+                            required
+                        ></textarea>
+                            <div class="invalid-feedback">
+                                Please fill out this field.
+                            </div>
+                        </div>
+                    </div>
+                    <button class="btn submit btn-primary">
+                        Submit
+                    </button>
+                </form>
+                <br>
+            </div>
+        </div>
+        <div class="col-12 col-md-5 mar">
+            <div>
+                <form class="needs-validation  box-2" novalidate id="user-form" action="/deleteevents" method="POST">
+                    <br>
+                    <center>
+                        <h3>Delete Event</h3>
+                    </center>
+                    <br>
+                    <div class="form-group row">
+                        <label for="eventname1" class="col-md-4 col-form-label label-1"
+                            ><b>Event Name: </b></label
+                        >
+                        <div class="col-md-7">
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="eventname1"
+                                placeholder="Event Name"
+                                name="eventname1"
+                                required
+                            />
+                            <div class="invalid-feedback">
+                                Please fill out this field.
+                            </div>
+                        </div>
+                    </div>
+                    <button class="btn submit btn-danger submit-1" id="delete-button">
+                        Delete
+                    </button>
+                </form>
+            </div>
+            <br>
+            <br>
+            <div>
+                <form class="needs-validation  box-2" novalidate id="user-form" action="/updateevents" method="POST">
+                    <br>
+                    <center>
+                        <h3>Update Event</h3>
+                    </center>
+                    <br>
+                    <div class="form-group row">
+                        <label for="eventname2" class="col-md-4 col-form-label label-1"
+                            ><b>Event Name: </b></label
+                        >
+                        <div class="col-md-7">
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="eventname2"
+                                placeholder="Event Name"
+                                name="eventname2"
+                                required
+                            />
+                            <div class="invalid-feedback">
+                                Please fill out this field.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="status2" class="col-md-4 col-form-label label-1"
+                            ><b>Status: </b></label
+                        >
+                        <div class="col-md-7">
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="status2"
+                                placeholder="1 for Past  2 for Present  3 for Upcoming"
+                                name="status2"
+                                required
+                            />
+                            <div class="invalid-feedback">
+                                Please fill out this field.
+                            </div>
+                        </div>
+                    </div>
+                    <button class="btn submit btn-success submit-1" id="delete-button">
+                        Update
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script
+    src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+    crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+<script src="/scripts/controllers/marketplaceController.js" type="module"></script>
+</body>
+</html>

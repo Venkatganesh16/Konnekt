@@ -38,40 +38,58 @@
       </nav>
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="/marketplace">Tools</a></li>
-          <li class="breadcrumb-item"><a href="/books">Books</a></li>
-          <li class="breadcrumb-item"><a href="/apron">Apron</a></li>
-          <li class="breadcrumb-item"><a href="/Electronics">Electronics</a></li>
-          <li class="breadcrumb-item">
-            <!-- Button trigger modal -->
-            <a href="#" data-toggle="modal" data-target="#exampleModal">
-              Post your ad <i class="fas fa-plus "></i>
-            </a>
-
-            <!-- Modal -->
-            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Post your ad</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                  </div>
-                  <div class="modal-body">
-                  <form class="needs-validation" novalidate id="user-form" action="/additems" method="POST" enctype="multipart/form-data">
-                    <br>
-                    <div class="form-group row">
-                        <label for="user" class="col-md-4 col-form-label label-1"
-                            ><b>Seller Name: </b></label
+            <li class="breadcrumb-item"><a href="/marketplace">Tools</a></li>
+            <li class="breadcrumb-item"><a href="/books">Books</a></li>
+            <li class="breadcrumb-item"><a href="/apron">Apron</a></li>
+            <li class="breadcrumb-item"><a href="/Electronics">Electronics</a></li>
+            <li class="breadcrumb-item">
+              <!-- Button trigger modal -->
+              <a href="#" data-toggle="modal" data-target="#exampleModal">
+                Post your ad <i class="fas fa-plus "></i>
+              </a>
+  
+              <!-- Modal -->
+              <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">Post your ad</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                    <form class="needs-validation" novalidate id="user-form" action="/additems" method="POST" enctype="multipart/form-data">
+                      <br>
+                      <div class="form-group row">
+                          <label for="user" class="col-md-4 col-form-label label-1"
+                              ><b>Seller Name: </b></label
+                          >
+                          <div class="col-md-7">
+                              <input
+                                  type="text"
+                                  class="form-control"
+                                  id="user"
+                                  placeholder="Seller Name"
+                                  name="user"
+                                  required
+                              />
+                              <div class="invalid-feedback">
+                                  Please fill out this field.
+                              </div>
+                          </div>
+                      </div>
+                      <div class="form-group row">
+                        <label for="name" class="col-md-4 col-form-label label-1"
+                            ><b>Item Name: </b></label
                         >
                         <div class="col-md-7">
                             <input
                                 type="text"
                                 class="form-control"
-                                id="user"
-                                placeholder="Seller Name"
-                                name="user"
+                                id="name"
+                                placeholder="Name"
+                                name="name"
                                 required
                             />
                             <div class="invalid-feedback">
@@ -80,16 +98,16 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                      <label for="name" class="col-md-4 col-form-label label-1"
-                          ><b>Item Name: </b></label
+                      <label for="user" class="col-md-4 col-form-label label-1"
+                          ><b>Original Price: </b></label
                       >
                       <div class="col-md-7">
                           <input
                               type="text"
                               class="form-control"
-                              id="name"
-                              placeholder="Name"
-                              name="name"
+                              id="price"
+                              placeholder="Original Price"
+                              name="price"
                               required
                           />
                           <div class="invalid-feedback">
@@ -98,16 +116,16 @@
                       </div>
                   </div>
                   <div class="form-group row">
-                    <label for="user" class="col-md-4 col-form-label label-1"
-                        ><b>Original Price: </b></label
+                    <label for="pricel" class="col-md-4 col-form-label label-1"
+                        ><b>Final Price: </b></label
                     >
                     <div class="col-md-7">
                         <input
                             type="text"
                             class="form-control"
-                            id="price"
-                            placeholder="Original Price"
-                            name="price"
+                            id="pricel"
+                            placeholder="Final Price"
+                            name="pricel"
                             required
                         />
                         <div class="invalid-feedback">
@@ -116,16 +134,34 @@
                     </div>
                 </div>
                 <div class="form-group row">
-                  <label for="pricel" class="col-md-4 col-form-label label-1"
-                      ><b>Final Price: </b></label
+                  <label for="user" class="col-md-4 col-form-label label-1"
+                      ><b>Mobile Number: </b></label
                   >
                   <div class="col-md-7">
                       <input
                           type="text"
                           class="form-control"
-                          id="pricel"
-                          placeholder="Final Price"
-                          name="pricel"
+                          id="mno"
+                          placeholder="Mobile Number"
+                          name="mno"
+                          required
+                      />
+                      <div class="invalid-feedback">
+                          Please fill out this field.
+                      </div>
+                  </div>
+              </div>
+                <div class="form-group row">
+                  <label for="desc" class="col-md-4 col-form-label label-1"
+                      ><b>Description: </b></label
+                  >
+                  <div class="col-md-7">
+                      <input
+                          type="text"
+                          class="form-control"
+                          id="desc"
+                          placeholder="Description"
+                          name="desc"
                           required
                       />
                       <div class="invalid-feedback">
@@ -134,80 +170,44 @@
                   </div>
               </div>
               <div class="form-group row">
-                <label for="user" class="col-md-4 col-form-label label-1"
-                    ><b>Mobile Number: </b></label
+                <label for="types" class="col-md-4 col-form-label label-1"
+                    ><b>Item Type: </b></label
                 >
-                <div class="col-md-7">
-                    <input
-                        type="text"
-                        class="form-control"
-                        id="mno"
-                        placeholder="Mobile Number"
-                        name="mno"
-                        required
-                    />
-                    <div class="invalid-feedback">
-                        Please fill out this field.
-                    </div>
-                </div>
-            </div>
-              <div class="form-group row">
-                <label for="desc" class="col-md-4 col-form-label label-1"
-                    ><b>Description: </b></label
-                >
-                <div class="col-md-7">
-                    <input
-                        type="text"
-                        class="form-control"
-                        id="desc"
-                        placeholder="Description"
-                        name="desc"
-                        required
-                    />
-                    <div class="invalid-feedback">
-                        Please fill out this field.
-                    </div>
-                </div>
+                <select name="sel1" id="sel1">
+                  <option>Select</option>
+                  <option>Books</option>
+                  <option>Apron</option>
+                  <option>Tools</option>
+                  <option>Electronics</option>
+                </select>
             </div>
             <div class="form-group row">
-              <label for="types" class="col-md-4 col-form-label label-1"
-                  ><b>Item Type: </b></label
+              <label for="desc" class="col-md-4 col-form-label label-1"
+                  ><b>Description: </b></label
               >
-              <select name="sel1" id="sel1">
-                <option>Select</option>
-                <option>Books</option>
-                <option>Apron</option>
-                <option>Tools</option>
-                <option>Electronics</option>
-              </select>
+              <div class="col-md-7">
+                <input type="file" id="image"
+                name="image" value="" required class="form-control">
+                  <div class="invalid-feedback">
+                      Please fill out this field.
+                  </div>
+              </div>
           </div>
-          <div class="form-group row">
-            <label for="desc" class="col-md-4 col-form-label label-1"
-                ><b>Description: </b></label
-            >
-            <div class="col-md-7">
-              <input type="file" id="image"
-              name="image" value="" required class="form-control">
-                <div class="invalid-feedback">
-                    Please fill out this field.
-                </div>
-            </div>
-        </div>
-                    <button class="btn submit btn-success submit">
-                        Post Ad
-                    </button>
-                </form>
+                      <button class="btn submit btn-success submit">
+                          Post Ad
+                      </button>
+                  </form>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-
-          </li>
+  
+            </li>
         </ol>
       </nav>
       <div class="books row">
         <% for(var i = 0; i < books.length; i++) {%>
-          <% if(books[i].types=="Books") { %>
+          <% if(books[i].types=="Electronics") { %>
           <div class="book card col-12 col-md-4" style="margin-top: 2%; text-align: center; width: 400px; height: 600px;">
             <div class="card-body">
               <img src="data:image/<%=books[i].img.contentType%>;base64,
