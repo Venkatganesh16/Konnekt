@@ -19,7 +19,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-              <a class="nav-link font1 mr-4" href="#"> Forum</a>
+              <a class="nav-link font1 mr-4" href="/forum"> Forum</a>
             </li>
             <li class="nav-item active">
               <a class="nav-link font1 mr-4" href="/marketplace">Market Place<span class="sr-only">(current)</span></a>
@@ -28,12 +28,13 @@
               <a class="nav-link font1 mr-4" href="/events">Events</a>
             </li>
           </ul>
-          <form class="form-inline my-2 my-lg-0 mr-2">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0 mr-5" type="submit">Search</button>
-            <a href="/myitems"><i class="fas fa-2x fa-user mr-5" style="color: black;"></i></a>
-            <a href="/logout" class="btn btn-outline-danger my-2 my-sm-0" type="submit">Log out</a>
-          </form>
+          <form action="/marketplace" method="GET" class="form-inline">
+            <input type="text" name="search" placeholder="Search" class="form-control">
+            <button type="submit" class="btn btn-warning my-0 my-sm-0">Search</button>
+        
+          <a class="btn" href="/myitems"><i class="fas fa-2x fa-user mr-5" style="color: black;"></i></a>
+          <a class="btn btn-outline-danger" href="/logout" class="btn btn-outline-danger my-2 my-sm-0" type="submit">Log out</a>
+        </form>
         </div>
       </nav>
       <nav aria-label="breadcrumb">
@@ -183,7 +184,7 @@
           </div>
           <div class="form-group row">
             <label for="desc" class="col-md-4 col-form-label label-1"
-                ><b>Description: </b></label
+                ><b>Image: </b></label
             >
             <div class="col-md-7">
               <input type="file" id="image"

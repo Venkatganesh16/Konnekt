@@ -1,4 +1,4 @@
-const express = require('express');
+ const express = require('express');
 const { Result } = require('express-validator');
       passport = require('passport');
       mongoose = require('mongoose');
@@ -10,7 +10,7 @@ app=express();
       passportLocalMongoose = require('passport-local-mongoose');
       User =  require("./models/user");
 // Connecting to database
-      mongoose.connect("mongodb://localhost/konnekt");
+mongoose.connect('mongodb+srv://ganeshdb:root@cluster0.yt3zl.mongodb.net/konnekt?retryWrites=true&w=majority');
       app.use(require("express-session") ({
           secret:"Any normal Word",//decode or encode session
           resave: false,          
@@ -50,9 +50,10 @@ app.get('/', (req, res) => {
     res.render("index");
 })
 
+
 app.post("/", passport.authenticate("local", {
     successRedirect:"/marketplace",
-    failureRedirect:"/"
+    failureRedirect:"/",
 }),function(req, res) {
 });
 
@@ -65,6 +66,7 @@ app.post("/register", (req, res) => {
     User.register(new User ({
         username: req.body.username,
         phone: req.body.phone,
+        password:req.body.password,
     }),
     req.body.password, function(err, user) {
         if(err) {
@@ -126,50 +128,111 @@ app.post("/additems", upload.single('image'), (req, res) => {
       );
 })
 
-app.get('/books', (req, res) => {
-    itemsModel.find({}, function (err, allbooks) {
-        if (err) {
-            console.log(err);
-        }
-        else {
-            res.render("books", {books: allbooks});
-        }
-    })
-})
+app.get('/books', (req, res)=> {
+    var noMatch = null;
+    if(req.query.search) {
+        var regex = new RegExp(escapeRegex(req.query.search), 'gi');
+        itemsModel.find({name: regex}, function(err, allbooks){
+           if(err){
+               console.log(err);
+           } else {
+              if(allbooks.length < 1) {
+                  noMatch = "No product match,the query";
+              }
+              res.render("books",{books:allbooks, noMatch: noMatch});
+           }
+        });
+    } 
+    else {
+        itemsModel.find({}, function(err, allbooks){
+           if(err){
+               console.log(err);
+           } else {
+              res.render("books",{books:allbooks, noMatch: noMatch});
+           }
+        });
+    }
+});
 
-app.get('/apron', (req, res) => {
-    itemsModel.find({}, function (err, allbooks) {
-        if (err) {
-            console.log(err);
-        }
-        else {
-            res.render("apron", {books: allbooks});
-        }
-    })
-})
+app.get('/apron', (req, res)=> {
+    var noMatch = null;
+    if(req.query.search) {
+        var regex = new RegExp(escapeRegex(req.query.search), 'gi');
+        itemsModel.find({name: regex}, function(err, allbooks){
+           if(err){
+               console.log(err);
+           } else {
+              if(allbooks.length < 1) {
+                  noMatch = "No product match,the query";
+              }
+              res.render("apron",{books:allbooks, noMatch: noMatch});
+           }
+        });
+    } 
+    else {
+        itemsModel.find({}, function(err, allbooks){
+           if(err){
+               console.log(err);
+           } else {
+              res.render("apron",{books:allbooks, noMatch: noMatch});
+           }
+        });
+    }
+});
 
-app.get('/marketplace', (req, res) => {
-    itemsModel.find({}, function (err, allbooks) {
-        if (err) {
-            console.log(err);
-        }
-        else {
-            res.render("marketplace", {books: allbooks});
-        }
-    })
-})
 
-app.get('/electronics', (req, res) => {
-    itemsModel.find({}, function (err, allbooks) {
-        if (err) {
-            console.log(err);
-        }
-        else {
-            res.render("electronics", {books: allbooks});
-        }
-    })
-})
+app.get('/marketplace', (req, res)=> {
+    var noMatch = null;
+    if(req.query.search) {
+        var regex = new RegExp(escapeRegex(req.query.search), 'gi');
+        itemsModel.find({name: regex}, function(err, allbooks){
+           if(err){
+               console.log(err);
+           } else {
+              if(allbooks.length < 1) {
+                  noMatch = "No product match,the query";
+              }
+              res.render("marketplace",{books:allbooks, noMatch: noMatch});
+           }
+        });
+    } 
+    else {
+        itemsModel.find({}, function(err, allbooks){
+           if(err){
+               console.log(err);
+           } else {
+              res.render("marketplace",{books:allbooks, noMatch: noMatch});
+           }
+        });
+    }
+});
 
+
+app.get('/electronics', (req, res)=> {
+    var noMatch = null;
+    if(req.query.search) {
+        var regex = new RegExp(escapeRegex(req.query.search), 'gi');
+        itemsModel.find({name: regex}, function(err, allbooks){
+           if(err){
+               console.log(err);
+           } else {
+              if(allbooks.length < 1) {
+                  noMatch = "No product match,the query";
+              }
+              res.render("electronics",{books:allbooks, noMatch: noMatch});
+           }
+        });
+    } 
+    else {
+        itemsModel.find({}, function(err, allbooks){
+           if(err){
+               console.log(err);
+           } else {
+              res.render("electronics",{books:allbooks, noMatch: noMatch});
+           }
+        });
+    }
+});
 app.get('/myitems', (req, res) => {
     itemsModel.find({}, function (err, allbooks) {
         if (err) {
@@ -236,6 +299,7 @@ var schema = new mongoose.Schema({
           res.render("addevents");
         }
       );
+    
   })
 
   /*app.put('/updateevents', (req, res) => {
@@ -252,6 +316,7 @@ var schema = new mongoose.Schema({
   })*/
 
   app.post ('/deleteevents', function(req,res) {
+
     const deleteEvents = pdetailsModel.findOne({event_name: req.body.eventname1});
     deleteEvents.remove().then(
         () => {
@@ -262,9 +327,11 @@ var schema = new mongoose.Schema({
           res.render(error);
         }
       );
+    
 })
 
 app.post('/updateevents', function(req, res) {
+
     const updateEvents = pdetailsModel.findOne({event_name: req.body.eventname2});
     updateEvents.update(updateEvents, { $set: {event_status: req.body.status2}}).then(
         () => {
@@ -275,12 +342,102 @@ app.post('/updateevents', function(req, res) {
           res.render(error);
         }
       );
+    
 })
+
+
+var pastSchema = new mongoose.Schema({
+    event_name : String,
+    event_date : String,
+    event_desc:String,
+    img:
+    {
+        data: Buffer,
+        contentType: String
+    },
+    
+  },
+  {
+      collection : 'pastevents'
+  });
+  
+  var pastModel = mongoose.model("events", pastSchema);
+  app.get("/pastevents", function (req, res) {   
+  pastModel.find({}, function (err, allevents) {
+      if (err) {
+          console.log(err);
+      } 
+      else {
+          res.render("pastevents", { events: allevents })
+      }
+  })
+  })
+
+  app.post("/addpastevents", upload.single('image'), (req, res) => {
+
+    const saveEvents = new pastModel({
+        event_name : req.body.eventname,
+        event_date : req.body.date,
+        event_desc:req.body.desc,
+        img: {
+            data: fs.readFileSync(path.join(__dirname + '/uploads/' + req.file.filename)),
+            contentType: 'image/png'
+        }  
+    });
+    saveEvents.save().then(
+        () => {
+            res.redirect("/pastevents");
+        }
+      ).catch(
+        (error) => {
+          res.render("addpastevents");
+        }
+      );
+  })
+
+
+  app.post ('/delpast', function(req,res) {
+
+    const deleteevents = pastModel.findOne({event_name: req.body.eventname1});
+    deleteevents.remove().then(
+        () => {
+            res.redirect("/pastevents");
+        }
+      ).catch(
+        (error) => {
+          res.render(error);
+        }
+      );
+    
+})
+
+app.post('/uppast', function(req, res) {
+
+    const updateEvents = pastModel.findOne({event_name: req.body.eventname2});
+    updateEvents.update(updateEvents, { $set: {event_status: req.body.status2}}).then(
+        () => {
+            res.redirect("/pastevents");
+        }
+      ).catch(
+        (error) => {
+          res.render(error);
+        }
+      );
+    
+})
+
 
   app.get("/addevents", (req, res) =>{
       res.render("addevents");
   })
 
+  app.get("/forum", (req, res) =>{
+    res.render("forum");
+})
+
+app.get("/addpastevents", (req, res) => {
+    res.render("addpastevents");
+})
 
 
 app.get("/logout", (req, res) => {
@@ -296,6 +453,10 @@ function isLoggedIn(req, res, next) {
 }
 // Listen on Server
 
+
+function escapeRegex(text) {
+    return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
+};
 app.listen(process.env.PORT || 3000, function (err) {
     if(err) {
         console.log(err);
@@ -304,4 +465,3 @@ app.listen(process.env.PORT || 3000, function (err) {
         console.log("Server started at 3000");
     }
 })
-

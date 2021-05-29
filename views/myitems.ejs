@@ -11,13 +11,42 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
     <title>My Items</title>
 </head>
-<body>
+<body><nav class="navbar nav-tabs navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="/marketplace"><img class="mr-4" src="/logo-2.jpeg" width="70" height="70"  /></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link font1 mr-4" href="/forum"> Forum</a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link font1 mr-4" href="/marketplace">Market Place<span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link font1 mr-4" href="/events">Events</a>
+        </li>
+      </ul>
+      <form class="form-inline my-2 my-lg-0 mr-2">
+        <!--<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0 mr-5" type="submit">Search</button>-->
+        <a href="/myitems"><i class="fas fa-2x fa-user mr-5" style="color: black;"></i></a>
+        <a href="/logout" class="btn btn-outline-danger my-2 my-sm-0" type="submit">Log out</a>
+      </form>
+    </div>
+  </nav>
+  
+    
             <% if(books!=null) { %>
                 <% books.forEach(function(item){ %>
                     <form novalidate id="user-form" action="/deleteitems" method="POST">
                         <br>
                         <br>
-                            <b><%= item.name%> </b>
+                        <div class="card">
+                            <div class="card-body" style="text-align: center;background-color: rgba(0, 0, 0, 0.801);color:white">
+                            <b "><%= item.name%> </b>
                                 <input
                                     type="text"
                                     class="form-control d-none"
@@ -30,10 +59,12 @@
                             <button class="btn submit btn-danger">
                                 Delete
                             </button>
+                        </div>
+                        </div>
                     </form>
                 <% }) %>
             <% } %>
-
+        
     <script
         src="https://code.jquery.com/jquery-3.6.0.min.js"
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
